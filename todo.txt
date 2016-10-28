@@ -1,0 +1,98 @@
+Generators:
+
+A generator is an object that generates a sequence of dates between a given start and end date.
+
+Examples of generators:
+
+"Monday"                                            # every monday
+">2004-03-12<"                                      # the 12th of march, 2004
+"2004-03-12< <2005-03-11"                           # every day from the 12th of march, 2004 until the 11th of march, 2005
+"Monday 2004-01-01< <2004-12-31"                    # every monday from the 1st of january, 2004 until the 31st of december, 2004
+"UNION Saturday Sunday"                             # weekends
+"2004-01-01< <2004-12-31 (NOT (UNION (Saturday) (Sunday)))" # every non-weekend day in 2004
+"Tuesday/2"                                         # second tuesday of every month
+"Tuesday/-1"                                        # last tuesday of every month
+"14 July"                                           # 14th of July every year
+
+
+Generator::Base
+  name
+  type
+  first_day
+  last_day
+  days_of_week    # array of String mon,tue,wed,thu,fri,sat,sun
+  weeks_of_month  # array of Integer -5,-4,-3,-2,-1,0,1,2,3,4,5 (0 = every week)
+  repeat_number   # nonzero positive integer
+  repeat_kind     # one of day|week|month|year
+
+  has_many schedule_combinations (Union, Intersection and Not types only)
+
+  def generate(from_date, until_date) ...
+
+module Generator::DateRange < Generator::Base
+  # attrs first_day, last_day, repeat_interval_number, repeat_interval_size
+  # def list_of_dates(from, until) -> return every Date matching constraints from first_day to last_day within from..until
+
+module Generator::Weekday < Generator::Base
+  # attrs day_of_week, nth_of_month
+  # day_of_week is in range 0..6
+  # nth_of_month is in range -5..4 (-5 = 5th last ... -1 = last, 0 = every, 1 = 1st ... 3 = 3rd, 4 = 4th, 5 = 5th)
+  # def list_of_dates(from, until) -> return every Date matching constraints from first_day to last_day within from..until
+
+module Generator::Birthday < Generator::Base
+  # attr date (year is ignored)
+
+module Generator::Union < Generator::Base
+  # attr list of generators
+
+module Generator::Intersection < Generator::Base
+  # attr list of generators
+
+module Generator::Not < Generator::Base
+  # attr generator
+
+
+ScheduleComposition
+  owner
+  schedule
+
+module Generator::NamedSchedule < Generator::Base
+  name
+  generator
+
+
+
+Course
+  course_start_date
+  course_finish_date
+  restrict_calendar_id
+  exclude_calendar_id
+
+
+Group
+  def schedule
+    s.exclude(academic_year, s.union(wednesdays, weekends, holidays))
+  end
+end
+
+# not directly required for course_series for now (required indirectly via restrict or exclude)
+    days         : ( ) mon ( ) tue ( ) wed ( ) thu ( ) fri ( ) sat ( ) sun
+    of month     : (x) every week ( ) 1st week of month ( ) 2nd week of month ( ) 3rd week of month ( ) last week of month
+    repeat every : _N_ _________v [days|weeks|months|years]
+
+NamedSchedule
+  [add a repeating date] [add a specific date] [add a weekday]
+  - build weekday generator
+    effect       : ( ) include ( ) restrict ( ) exclude
+    days         : ( ) mon ( ) tue ( ) wed ( ) thu ( ) fri ( ) sat ( ) sun
+    of month     : (x) every week ( ) 1st week of month ( ) 2nd week of month ( ) 3rd week of month ( ) last week of month
+  - build repeating generator
+    effect       : ( ) include ( ) restrict ( ) exclude
+    date         : ______________
+    repeat every : _N_ _________v [days|weeks|months|years]
+  - build specific generator
+    effect       : ( ) include ( ) restrict ( ) exclude
+    date         : ______________
+
+
+.

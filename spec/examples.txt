@@ -1,0 +1,34 @@
+example_id                    | status | run_time        |
+----------------------------- | ------ | --------------- |
+./spec/annual_spec.rb[1:1]    | passed | 0.00076 seconds |
+./spec/annual_spec.rb[1:2]    | passed | 0.00013 seconds |
+./spec/annual_spec.rb[1:3]    | passed | 0.00012 seconds |
+./spec/annual_spec.rb[1:4]    | passed | 0.00012 seconds |
+./spec/annual_spec.rb[1:5]    | passed | 0.00012 seconds |
+./spec/date_list_spec.rb[1:1] | passed | 0.0001 seconds  |
+./spec/date_list_spec.rb[1:2] | passed | 0.00015 seconds |
+./spec/date_list_spec.rb[1:3] | passed | 0.00017 seconds |
+./spec/date_spec.rb[1:1:1]    | passed | 0.00026 seconds |
+./spec/date_spec.rb[1:2:1]    | passed | 0.00068 seconds |
+./spec/date_spec.rb[1:3:1]    | passed | 0.00089 seconds |
+./spec/intersect_spec.rb[1:1] | passed | 0.00589 seconds |
+./spec/interval_spec.rb[1:1]  | passed | 0.00048 seconds |
+./spec/interval_spec.rb[1:2]  | passed | 0.0002 seconds  |
+./spec/interval_spec.rb[1:3]  | passed | 0.0002 seconds  |
+./spec/interval_spec.rb[1:4]  | passed | 0.00031 seconds |
+./spec/interval_spec.rb[1:5]  | passed | 0.00018 seconds |
+./spec/interval_spec.rb[1:6]  | passed | 0.00013 seconds |
+./spec/month_spec.rb[1:1]     | passed | 0.00843 seconds |
+./spec/month_spec.rb[1:2]     | passed | 0.00021 seconds |
+./spec/month_spec.rb[1:3]     | passed | 0.00021 seconds |
+./spec/month_spec.rb[1:4]     | passed | 0.00048 seconds |
+./spec/month_spec.rb[1:5]     | passed | 0.00016 seconds |
+./spec/month_spec.rb[1:6]     | passed | 0.00012 seconds |
+./spec/month_spec.rb[1:7]     | passed | 0.00197 seconds |
+./spec/subtract_spec.rb[1:1]  | passed | 0.01205 seconds |
+./spec/union_spec.rb[1:1]     | passed | 0.00034 seconds |
+./spec/union_spec.rb[1:2]     | passed | 0.00032 seconds |
+./spec/weekday_spec.rb[1:1]   | passed | 0.00012 seconds |
+./spec/weekday_spec.rb[1:2]   | passed | 0.00015 seconds |
+./spec/weekday_spec.rb[1:3]   | passed | 0.00021 seconds |
+./spec/weekday_spec.rb[1:4]   | passed | 0.00025 seconds |
