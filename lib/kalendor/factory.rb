@@ -50,6 +50,7 @@ module Kalendor
       Kalendor::Instance::Month.new month: n
     end
 
+    def subtract? x, y ; y ? subtract(x, y) : x ; end
     alias date to_date
   end
 
