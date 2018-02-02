@@ -7,8 +7,8 @@ Gem::Specification.new do |spec|
   spec.version       = Kalendor::VERSION
   spec.authors       = ["Conan Dalton"]
   spec.email         = ["conan@conandalton.net"]
-  spec.description   = %q{Utility classes for generating sets of dates}
   spec.summary       = %q{Utility classes for generating sets of dates}
+  spec.description   = %q{Utility classes for generating sets of dates with simple concise specifications}
   spec.homepage      = "http://github.com/conanite/kalendor"
   spec.license       = "MIT"
 

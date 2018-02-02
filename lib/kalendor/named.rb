@@ -3,6 +3,6 @@ module Kalendor
     include Aduki::Initializer
     attr_accessor :name, :label, :kalendor
     def get_dates from, upto ; kalendor.get_dates from, upto ; end
-    def []                 m ; return name if m == :name     ; end
+    def _nydp_get          m ; return name if m == :name     ; end
   end
 end
