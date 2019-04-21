@@ -32,3 +32,4 @@ bm.txt
 *.o
 *.a
 mkmf.log
+spec/examples.txt
