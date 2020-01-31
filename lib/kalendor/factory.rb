@@ -1,10 +1,10 @@
 require "aduki"
 require "kalendor/date_helper"
-require "kalendor/named"
 require "kalendor/instance/date_list"
 require "kalendor/instance/weekday"
 require "kalendor/instance/annual"
 require "kalendor/instance/month"
+require "kalendor/instance/monthly"
 require "kalendor/instance/union"
 require "kalendor/instance/intersect"
 require "kalendor/instance/subtract"
@@ -14,20 +14,18 @@ module Kalendor
   class Factory
     include DateHelper
 
-    def named name, label, kal
-      Kalendor::Named.new name: name, label: label, kalendor: kal
-    end
-
     def annual date, month
       Kalendor::Instance::Annual.new annual_month: month, annual_date: date
     end
 
     def union *schedules
-      Kalendor::Instance::Union.new schedules: schedules
+      s = schedules.compact
+      s.length == 1 ? s[0] : Kalendor::Instance::Union.new(schedules: s)
     end
 
     def intersect *schedules
-      Kalendor::Instance::Intersect.new schedules: schedules
+      s = schedules.compact
+      s.length == 1 ? s[0] : Kalendor::Instance::Intersect.new(schedules: s)
     end
 
     def subtract x, y
@@ -48,6 +46,10 @@ module Kalendor
 
     def month n
       Kalendor::Instance::Month.new month: n
+    end
+
+    def monthly d
+      Kalendor::Instance::Monthly.new monthly_date: d
     end
 
     def subtract? x, y ; y ? subtract(x, y) : x ; end

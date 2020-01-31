@@ -17,4 +17,16 @@ RSpec.describe Kalendor::Intersect do
 
     expect(summer_weekends.get_dates(date("1999-01-01"), date("2020-12-31")).to_a).to eq weekends_in_summer_2016
   end
+
+  it "ignores nil arguments" do
+    summer_weekends = Kalendor.build do
+      intersect(nil, union(weekday(6), weekday(7)), nil, nil)
+    end
+
+    weekends_in_jul_2016    = [30,31          ].map { |d| date("2016-07-#{d}") }
+    weekends_in_aug_2016    = [6,7,13,14,20,21].map { |d| date("2016-08-#{d}") }
+    weekends_in_summer_2016 = weekends_in_jul_2016 + weekends_in_aug_2016
+
+    expect(summer_weekends.get_dates(date("2016-07-29"), date("2016-08-26")).to_a).to eq weekends_in_summer_2016
+  end
 end
