@@ -5,7 +5,7 @@ module Kalendor
 
       def append other
         me = self
-        Factory.build { union me, other }
+        Kalendor.build { union me, other }
       end
 
       def union *others
