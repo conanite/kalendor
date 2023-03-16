@@ -52,6 +52,10 @@ module Kalendor
       Kalendor::Instance::Monthly.new monthly_date: d
     end
 
+    def append existing, other
+      existing.append other
+    end
+
     def subtract? x, y ; y ? subtract(x, y) : x ; end
     alias date to_date
   end
